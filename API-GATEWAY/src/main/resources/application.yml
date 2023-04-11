@@ -1,0 +1,23 @@
+
+server:
+  port: 8095
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: POLICY-MANAGEMENT-SERVICE
+          uri: lb://POLICY-MANAGEMENT-SERVICE
+          predicates:
+            - Path=/policy/**
+        - id: CLAIMS-MANAGEMENT-SERVICE
+          uri: lb://CLAIMS-MANAGEMENT-SERVICE
+          predicates:
+            - Path=/claims/**
+        - id: BILLS-MANAGEMENT-SERVICE
+          uri: lb://BILLS-MANAGEMENT-SERVICE
+          predicates:
+            - Path=/bills/**
+  application:
+    name: API-GATEWAY
